@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update]
-    
+
     def index
-        @articles = Article.all
+        @articles = Article
     end
 
     def show
@@ -31,14 +31,13 @@ class ArticlesController < ApplicationController
         else
             flash.now[:error] = '更新出来ませんでした'
             render :edit
-        end        
+        end
     end
 
     def destroy
         article.destroy!
         redirect_to root_path, notice: '削除に成功しました'
     end
-
 
     private
     def article_params
