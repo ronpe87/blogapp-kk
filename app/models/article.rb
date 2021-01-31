@@ -7,7 +7,7 @@
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
+
 class Article < ApplicationRecord
     validates :title, presence:true
     validates :title, length:{ minimum: 2, maximum: 100 }
@@ -19,6 +19,8 @@ class Article < ApplicationRecord
 
     validate :validate_title_and_content_length
 
+    belongs_to :user
+
     def display_created_at
         I18n.l(self.created_at, format: :default)
     end
@@ -26,8 +28,6 @@ class Article < ApplicationRecord
     private
     def validate_title_and_content_length
         char_count = self.title.length + self.content.length
-        unless char_count > 100
-            errors.add(:content, '100文字以上で頼む')
-        end
+            errors.add(:content, '100文字以上で頼む') unless char_count > 100
     end
 end
