@@ -24,16 +24,15 @@ class Article < ApplicationRecord
 
   validate :validate_title_and_content_length
 
-    belongs_to :user
+  belongs_to :user
 
-    def display_created_at
-        I18n.l(self.created_at, format: :default)
-    end
+  def display_created_at
+      I18n.l(self.created_at, format: :default)
+  end
 
-    private
-    def validate_title_and_content_length
-        char_count = self.title.length + self.content.length
-            errors.add(:content, '100文字以上で頼む') unless char_count > 100
-    end
+  private
+  def validate_title_and_content_length
+      char_count = self.title.length + self.content.length
+          errors.add(:content, '100文字以上で頼む') unless char_count > 100
   end
 end
