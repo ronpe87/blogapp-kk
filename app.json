@@ -1,0 +1,16 @@
+{
+    "name": "blog app",
+    "description": "This is blogapp-kk",
+    "keywords": [],
+    "website": "",
+    "repository": "https://github.com/ronpe87/blogapp-kk",
+    "env": {},
+    "addons": [
+      "heroku-postgresql:hobby-dev"
+    ],
+    "buildpacks": [{
+      "url": "heroku/nodejs"
+    }, {
+      "url": "heroku/ruby"
+    }]
+  }
