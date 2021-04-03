@@ -41,23 +41,23 @@ document.addEventListener('turbolinks:load', () => {
       window.alert('失敗!')
     })
 
-    handleCommentForm()
+  handleCommentForm()
 
-    $('.add-comment-button').on('click', () => {
-      const content = $('#comment_content').val()
-      if (!content) {
-        window.alert('コメントを入力してください')
-      } else {
-        axios.post(`/api/articles/${articleId}/comments`, {
-          comment: {content: content}
+  $('.add-comment-button').on('click', () => {
+    const content = $('#comment_content').val()
+    if (!content) {
+      window.alert('コメントを入力してください')
+    } else {
+      axios.post(`/api/articles/${articleId}/comments`, {
+        comment: {content: content}
+      })
+        .then((res) => {
+          const comment = res.data
+          appendNewComment(comment)
+          $('#comment_content').val('')
         })
-          .then((res) => {
-            const comment = res.data
-            appendNewComment(comment)
-            $('#comment_content').val('')
-          })
-      }
-    })
+    }
+  })
 
   axios.get(`/api/articles/${articleId}/like`)
     .then((response) => {
